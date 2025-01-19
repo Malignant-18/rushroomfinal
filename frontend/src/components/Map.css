@@ -1,0 +1,42 @@
+.map-container {
+  flex-grow: 1; /* Take up available space */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  position: relative;
+}
+.leaflet-map {
+  height: 100%;
+  width: 100%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 999;
+}
+
+.overlay.visible {
+  display: block;
+}
+
+.refresh-location-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.refresh-location-btn:hover {
+  background-color: #0056b3;
+}

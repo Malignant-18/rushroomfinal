@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-
 import Map from "./components/Map";
 import ToiletDetails from "./components/ToiletDetails";
-import App from "./App";
+import Layout from "./Layout"
 
+// using createBrowserRouter from React v6.0
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Layout />,
     children: [
       { path: "/", element: <Map /> },
       { path: "/toilet/:id", element: <ToiletDetails /> },

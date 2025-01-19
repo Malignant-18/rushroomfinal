@@ -1,0 +1,29 @@
+/* Ensure html and body fill the entire viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* app-container should fill the available space */
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+  }
+  
+  /* content-wrapper should allow children (like map) to grow */
+  .content-wrapper {
+    flex-grow: 1;
+    width: 1050px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex; /* Make sure the child takes full height */
+    flex-direction: column;
+
+  }
+  
+  /* Ensure the map-container takes the full available space */
+ 
+  
