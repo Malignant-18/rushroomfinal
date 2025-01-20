@@ -1,13 +1,21 @@
 import React from "react";
+import './Sidebar.css';
 
 export default function Sidebar({ isOpen, onClose, toilet }) {
   if (!toilet) return null;
 
-  return (
-    <div className={`sidebar ${isOpen ? "open" : ""}`}>
-      <button className="close-btn" onClick={onClose}>
-        ×
-      </button>
+  return (<>
+    {isOpen && (
+      <div 
+        className="sidebar-overlay"
+        onClick={onClose}
+      />
+    )}
+    <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+          <button className="close-button" onClick={onClose}>
+            ×
+          </button>
+        <div className="sidebar-content">
       <h2>{toilet.name}</h2>
       <p>Location: {toilet.location}</p>
       <p>Condition: {toilet.condition}</p>
@@ -17,5 +25,9 @@ export default function Sidebar({ isOpen, onClose, toilet }) {
         {toilet.facilities?.wheelchair_accessible && " Wheelchair Accessible"}
       </p>
     </div>
+    </div>
+    </>
   );
 }
+  
+

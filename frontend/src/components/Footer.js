@@ -1,13 +1,13 @@
 import React from "react";
 
 export default function Footer() {
-  const footerStyle = {
-    backgroundColor: "#f8f9fa",
+  /*const footerStyle = {
+    backgroundColor: "#a2a9aa",
     padding: "1rem 0",
     textAlign: "center",
     borderTop: "1px solid #dee2e6",
     marginTop: "auto",
-  };
+  };*/
 
   const linkStyle = {
     margin: "0 10px",
@@ -21,7 +21,7 @@ export default function Footer() {
   };
 
   return (
-    <footer style={footerStyle}>
+    <footer >
       <p>&copy; {new Date().getFullYear()} Rushroom. All Rights Reserved.</p>
       <div>
         <a

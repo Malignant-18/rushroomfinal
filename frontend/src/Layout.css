@@ -1,29 +1,68 @@
-/* Ensure html and body fill the entire viewport */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* app-container should fill the available space */
-  .app-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f9fa;
-  }
-  
-  /* content-wrapper should allow children (like map) to grow */
-  .content-wrapper {
-    flex-grow: 1;
-    width: 1050px;
-    margin: 0 auto;
-    padding: 16px;
-    display: flex; /* Make sure the child takes full height */
-    flex-direction: column;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  }
-  
-  /* Ensure the map-container takes the full available space */
- 
-  
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 105;
+}
+
+.navbar-wrapper nav {
+  height: 60px;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-wrapper {
+  flex: 1;
+  margin-top: 60px; /* Height of navbar */
+  margin-bottom: 50px; /* Height of footer */
+  min-height: calc(100vh - 110px);
+  width: 100%;
+  position: relative;
+}
+
+.content-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.footer-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 105;
+}
+
+.footer-wrapper footer {
+  height: 50px;
+  background: #0f0202;
+  color: #f02a2a;
+  text-align: center;
+  line-height: 50px;
+}

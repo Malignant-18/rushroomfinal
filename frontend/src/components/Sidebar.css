@@ -1,0 +1,66 @@
+/* Overlay styles */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index:   106; /* Below sidebar but above other content */
+    transition: opacity 0.3 s ease;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -33.333%; /* Start off-screen */
+    width: 33.333%; /* Takes 1/3rd of the screen */
+    height: 100vh;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 110;
+    overflow-y: auto;
+  }
+  
+  /* Open state */
+  .sidebar.open {
+    right: 0;
+  }
+  
+  /* Close button */
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+  
+  .close-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Content container */
+  .sidebar-content {
+    padding: 20px;
+    padding-top: 60px; /* Space for close button */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%; /* Full width on mobile */
+      right: -100%;
+    }
+  }
