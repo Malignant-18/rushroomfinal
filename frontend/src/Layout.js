@@ -1,23 +1,43 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+
+//import Titlebar from "./components/Title";
+//import BottomNavbar from "./components/BottomNavbar";
+
+import Home from "./pages/Home";
+import Map from "./pages/Map";
+import Reviews from "./pages/Reviews";
+import Profile from "./pages/Profile";
+
 import "./Layout.css";
+{/* <Titlebar /> */}
 
 export default function Layout() {
   return (
     <div className="app-container">
-      <div className="navbar-wrapper">
-        <Navbar />
+      
+      <div className="titlebar-wrapper">
+        <p>this is inside Layout</p>
       </div>
+
+
       <div className="main-wrapper">
-        <div className="content-container">
-          <Outlet />
-        </div>
+        <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/map" element={<Map/>} />
+          <Route path="/reviews" element={<Reviews/>} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        </BrowserRouter>
       </div>
+
+
       <div className="footer-wrapper">
-        <Footer />
       </div>
+
     </div>
   );
 }
+{/* <BottomNavbar /> */}

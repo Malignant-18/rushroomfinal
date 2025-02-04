@@ -1,0 +1,136 @@
+I'll break down the architecture and data flow for RushRoom, a tourist-focused toilet finder app:
+
+Data Structure:
+
+1. Toilets Table:
+- id (Primary Key)
+- name with address
+- place/town
+- coordinates (lat/lng)
+- free/paid
+- opening_hours
+- closing hours
+- shower
+- facilities (JSON: wheelchair, baby_change, sanitarypad)BOOLEAN
+- average_rating
+- image
+- contact caretaker
+- last Maintenance
+- issues-raised(array of issues like no water  , no soap  , not cleaned)
+
+
+2. Reviews Table:
+- id (Primary Key)
+- toilet_id (Foreign Key)
+- user_id (Foreign Key)
+- rating
+- comment
+- images
+- created_at
+
+Application Flow:
+
+1. Main Page (/)
+- Map centered on Kochi
+- Filter sidebar (collapsible)
+- Markers for each toilet
+- Click marker → small popup with basic info + "View Details" button
+- Filter options affect visible markers in real-time
+
+2. Toilet Detail Page (/toilet/:id)
+- Full toilet information
+- Photo gallery
+- Opening hours
+- Amenities list
+- Reviews section
+- Rating submission form
+- Direction button (opens in maps)
+
+API Endpoints:
+
+1. Toilets:
+- GET /api/toilets (with query params for filters)
+- GET /api/toilets/:id (detailed info)
+- POST /api/toilets (admin only)
+- PUT /api/toilets/:id (admin only)
+
+2. Reviews:
+- GET /api/toilets/:id/reviews
+- POST /api/toilets/:id/reviews
+- PUT /api/reviews/:id (own reviews only)
+- DELETE /api/reviews/:id (own reviews only)
+
+Key Features:
+
+1. Map Features:
+- Custom markers based on toilet type
+- Clustering for multiple markers
+- Current location button
+- Zoom controls
+- Search by location
+
+2. Filter System:
+- Type (public/paid/mall)
+- Facilities (wheelchair/baby change)
+- Rating minimum
+- Currently open
+- Distance from current location
+- Search by name/location
+
+3. Review System:
+- Star rating
+- Comment
+- Photo upload
+- Sort by recent/rating
+- Report inappropriate reviews
+- Edit/delete own reviews
+
+Technical Considerations:
+
+1. Performance:
+- Load markers in batches based on viewport
+- Cache toilet data locally
+- Optimize images
+- Implement pagination for reviews
+
+2. User Experience:
+- Loading states
+- Error handling
+- Responsive design
+- Offline capabilities
+- Image lazy loading
+
+3. Location Services:
+- Geolocation permissions
+- Fallback locations
+- Distance calculations
+- Directions integration
+
+4. Database Optimization:
+- Spatial indexing for coordinates
+- Caching layer for common queries
+- Regular cleanup of unused images
+- Proper indexing for frequent queries
+
+Future Features:
+
+1. Social:
+- User profiles
+- Favorite toilets
+- Share toilets
+- Contribution badges
+
+2. Expansion:
+- Multiple cities
+- Business partnerships
+- Cleanliness reports
+- Real-time availability
+- Maintenance schedules
+
+3. Admin Features:
+- Dashboard
+- Analytics
+- Report handling
+- Content moderation
+
+Would you like me to elaborate on any particular aspect?
