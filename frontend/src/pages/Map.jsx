@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-
 import Sidebar from "../components/Sidebar";
-import RecenterMap from "../components/RecenterMap";
-import Filter from "../components/Filter";
 import fetchRushroom from "../backend/rushroom";
+import MapComponent from "../components/MapComponent";
 import "./Map.css";
-
+import 'leaflet/dist/leaflet.css';
 // Fix Leaflet marker icon issues
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -20,7 +16,7 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
-export default function Map() {
+export default function MapPage() {
   const [toilets, setToilets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedToilet, setSelectedToilet] = useState(null);
@@ -56,7 +52,7 @@ export default function Map() {
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const currentLocation = [position.coords.latitude,position.coords.longitude,];
+        const currentLocation = [position.coords.latitude, position.coords.longitude];
         setLocation(currentLocation);
         setUserMarker(currentLocation);
       },
@@ -68,55 +64,26 @@ export default function Map() {
   };
 
   if (loading) {
-      return <div className="loading-container">Loading...</div>;
+    return <div className="loading-container">Loading...</div>;
   }
 
   return (
     <div className="map-page">
-      <p>this is inside Map</p>
+      {/*<p>This is inside Map</p>*/}
+
       <div className="map-controls">
-        <button className="location-btn" onClick={handleFetchLocation}>Get My Location</button>
+        <button className="location-btn" onClick={handleFetchLocation}>
+          Get My Location
+        </button>
       </div>
 
       <div className="map-container">
-        <MapContainer center={location} zoom={15} className="leaflet-map">
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {toilets.map((toilet) =>
-            toilet.latitude && toilet.longitude ? (
-              <Marker key={toilet.id} position={[toilet.latitude, toilet.longitude]}>
-                <Popup>
-                  <div className="popup-content">
-                    <h3>{toilet.name}</h3>
-                    <p>{toilet.place}</p>
-                    <button onClick={() => handleViewDetails(toilet)}>View Details</button>
-                  </div>
-                </Popup>
-              </Marker>
-            ) : null
-          )}
-
-          {userMarker && (
-            <Marker position={userMarker}>
-              <Popup>Your current location</Popup>
-            </Marker>
-          )}
-
-          <RecenterMap location={location} />
-        </MapContainer>
+        <MapComponent toilets={toilets} location={location} userMarker={userMarker} onViewDetails={handleViewDetails} />
       </div>
 
-      <Sidebar
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-        toilet={selectedToilet}
-      />
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} toilet={selectedToilet} />
 
       {isSidebarOpen && <div className="overlay" onClick={() => setIsSidebarOpen(false)} />}
     </div>
   );
 }
-
-//<Filter />

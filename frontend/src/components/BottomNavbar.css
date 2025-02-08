@@ -1,15 +1,16 @@
+
 .bottom-navbar {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 20;
-    padding-bottom: 90px;
+    z-index: 200;
+    padding-bottom: 44px;
   }
   
   .bottom-navbar-container {
     background-color: rgb(224, 162, 120);
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
     max-width: 500px;
     margin: 0 auto;

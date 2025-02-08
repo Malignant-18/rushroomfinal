@@ -1,0 +1,41 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background:  linear-gradient(to bottom, rgb(37, 18, 4) rgb(224, 162, 120));
+  padding: 15px 20px;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 1000;
+  height: 45px;
+}
+
+.navbar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@font-face {
+  font-family: 'RushroomFont';
+  src: url('/public/fonts/Municipal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.site-title {
+  font-family: 'RushroomFont', sans-serif; /* Fallback to sans-serif */
+  font-size: 3rem;
+  font-weight: 100;
+  text-align: center;
+  margin: 0; /* Remove any extra margin */
+  padding: 8px;
+  color: #471100;
+  white-space: nowrap; /* Prevents text from wrapping */
+}

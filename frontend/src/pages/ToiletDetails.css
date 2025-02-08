@@ -1,0 +1,216 @@
+.toilet-details {
+    margin: 45px auto 20px;
+    max-width: 600px;
+    padding: 20px;
+    background: linear-gradient(145deg, #fff, #fff8f3);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(255, 72, 0, 0.1);
+    transform-origin: top;
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .toilet-details h1 {
+    color: #ff4800;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .toilet-details h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff4800, #471100);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  
+  .toilet-details:hover h1::after {
+    width: 100px;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 12px;
+    background: white;
+    transition: all 0.3s ease;
+  }
+  
+  .detail-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 4px 12px rgba(71, 17, 0, 0.1);
+  }
+  
+  .detail-label {
+    min-width: 120px;
+    color: #471100;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .detail-value {
+    color: #666;
+    flex: 1;
+  }
+  
+  .toilet-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin: 20px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .toilet-image:hover {
+    transform: scale(1.02);
+  }
+  
+  .back-button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #ff4800, #ff6b00);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 72, 0, 0.2);
+  }
+  
+  .back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 72, 0, 0.3);
+  }
+  
+  .back-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(255, 72, 0, 0.2);
+  }
+  
+  .availability-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: #ff48001a;
+    color: #ff4800;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 16px;
+    background: #471100;
+    color: white;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  
+  .rating::before {
+    content: '★';
+    color: #ff4800;
+  }
+  
+  @media (max-width: 600px) {
+    .toilet-details {
+      margin: 45px 15px 20px;
+      padding: 15px;
+    }
+    
+    .detail-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .detail-label {
+      margin-bottom: 4px;
+    }
+  }
+
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    margin-top: 45px;
+  }
+  
+  .toilet-details {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    background: linear-gradient(145deg, #fff, #fff8f3);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(255, 72, 0, 0.1);
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 72, 0, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-button:hover {
+    background: #ff4800;
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .carousel-button.prev {
+    left: 20px;
+  }
+  
+  .carousel-button.next {
+    right: 20px;
+  }
+  
+  .detail-item {
+    cursor: grab;
+    touch-action: pan-y;
+  }
+  
+  .detail-item:active {
+    cursor: grabbing;
+  }
+  
+  /* Rest of your existing styles... */
