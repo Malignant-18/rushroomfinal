@@ -26,10 +26,10 @@ export default function Layout() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/map" element={<Map/>} />
-          <Route path="/reviews" element={<Reviews/>} />
+          <Route path="/reviews/:id" element={<Reviews/>} />
           <Route path="/profile" element={<Profile/>} />
           <Route path="/toilets/:id" element={<ToiletDetails/>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          
         </Routes>
         </BrowserRouter>
       </div>

@@ -21,7 +21,7 @@ export default function MapPage() {
   const [loading, setLoading] = useState(true);
   const [selectedToilet, setSelectedToilet] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [location, setLocation] = useState([9.965579, 76.24275]);
+  const [location, setLocation] = useState([9.96145, 76.24945]);
   const [userMarker, setUserMarker] = useState(null);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function MapPage() {
       }
     }
     fetchToilets();
-  }, []);
+  }, [location]);
 
   const handleViewDetails = (toilet) => {
     setSelectedToilet(toilet);

@@ -1,0 +1,265 @@
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color:rgb(224, 162, 120);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    height: 590px;
+    overflow: auto;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @font-face {
+    font-family: 'Wotfard-Regular';
+    src: url('/public/fonts/Wotfard-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  /* Modal Header */
+  .modal-header {
+    padding-left: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #612a09;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    
+    
+    font-family: 'Wotfard-Regular', sans-serif; 
+    background: rgb(224, 162, 120);
+    z-index: 1;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .close-button:hover {
+    background-color: rgb(224, 162, 120);
+    ;
+  }
+  
+  /* Form Styles */
+  .review-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .input-start{
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr ;
+    gap: 20px;
+  }
+  .input-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+  }
+  
+  .text-input {
+    padding: 12px;
+    width: 200px;
+    border: 2px solid #756453;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgb(231, 176, 140);
+    transition: all 0.2s;
+  }
+  
+  .text-input:focus {
+    border-color: #756453;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+  
+  /* Rating Buttons */
+  .rating-group {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .rating-button {
+    padding: 11px 19px;
+    border: 2px solid #756453;
+    border-radius: 8px;
+    background:rgb(231, 176, 140);
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 45px;
+    font-weight: 500;
+  }
+  
+  .rating-button:hover {
+    border-color: #b86903;
+  }
+  
+  .rating-button.active {
+    background-color: #dd9049;
+    color: rgb(88, 50, 14);
+    border-color: #756453;
+  }
+  
+  /* Issues Grid */
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  
+  .issue-button {
+    padding: 10px 12px;
+    border: 2px solid #756453;
+    border-radius: 8px;
+    background: rgb(231, 176, 140);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  
+  .issue-button:hover {
+    border-color: #756453;
+    background-color: #dd9049;
+  }
+  
+  .issue-button.active {
+    background-color: #dd9049;
+    color: rgb(20, 20, 20);
+    border-color: #756453;
+  }
+  
+  .issue-button.none-issue {
+    background-color: rgb(231, 176, 140);
+    font-weight: 500;
+  }
+  
+  .issue-button.none-issue.active {
+    background-color: #eb7a1d;
+    border-color: #1d140a;
+  }
+  
+  /* Review Textarea */
+  .review-textarea {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    min-height: 100px;
+    resize: vertical;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  
+  .review-textarea:focus {
+    border-color: #3f2900;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+  
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  
+  .submit-button {
+    position: relative;
+    top: -85px;
+    left: 608px;
+    padding: 9px 16px;
+    background-color: rgb(199, 148, 113);
+    color: rgb(48, 43, 38);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+    min-width: 120px;
+  }
+  
+  .submit-button:hover {
+    background-color: rgb(199, 177, 167);
+    
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 480px) {
+    .modal-content {
+      width: 100%;
+      height: 100%;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+    
+    .feedback-buttons {
+      flex-direction: column;
+    }
+    
+    .action-buttons {
+      flex-direction: column-reverse;
+      gap: 12px;
+    }
+    
+    .submit-button {
+      width: 100%;
+    }
+    
+    .issues-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+  }

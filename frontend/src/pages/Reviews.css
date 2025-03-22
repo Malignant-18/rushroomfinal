@@ -1,0 +1,238 @@
+.SeparatorRoot {
+	background-color: rgb(155, 119, 85);
+}
+.SeparatorRoot[data-orientation="horizontal"] {
+	height: 2px;
+	width: 76%;
+}
+
+.container {
+    overflow: hidden;
+    height: 600px;
+}
+
+.review-page {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.review-grid {
+    background-color: rgb(241, 183, 133);
+    border-radius: 20px;
+    max-height: 440px;
+    margin-top: 63px;
+    display: grid;
+    grid-template-columns: 3fr 6fr;
+    width: 950px;
+}
+
+.review-left {
+    background-color: rgb(241, 183, 133);
+    border: solid 2px rgb(241, 183, 133);
+    border-radius: 12px;
+}
+
+
+.review-right {
+    background-color: rgb(202, 149, 102);
+    border: solid 1px rgb(238, 179, 128);
+    border-radius: 8px;
+    max-height: 600px;  /* Prevents exceeding 600px */
+    overflow-y: auto;   /* Enables scrollbar when needed */
+    padding: 10px;
+    scrollbar-width: none;  /* Hides scrollbar in Firefox */
+    -ms-overflow-style: none;  /* Hides scrollbar in IE/Edge */
+}
+
+.review-right::-webkit-scrollbar {
+    display: none;  /* Hides scrollbar in Chrome/Safari */
+}
+
+/* Fix: Limit height and allow scrolling */
+.review-list {
+    max-height: 100%; 
+    overflow-y: auto;
+}
+
+/* Keep reviews inside fixed height */
+.review-card {
+    border: solid 1px rgb(3, 3, 3);
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-template-rows: auto auto;
+    gap: 5px;
+    box-shadow: #000000 ;
+    margin: 10px;
+    padding: 9px;
+    border-radius: 6px;
+    background-color: rgb(250, 233, 211);
+    transition: all 0.3s ease-in-out;
+    min-height: 65px;
+    height: auto;
+}
+.grid-item:nth-child(3) {
+    justify-self: end; /* Moves only the 2nd element to the right */
+}
+.review-card-text {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    padding-left: 10px;
+    color: rgb(14, 9, 9);
+    display: flex;
+    gap : 5px;
+    align-items: start;
+    overflow: hidden;
+}
+
+.toggle {
+    grid-column: 2;
+    grid-row: 1;
+    width: 40px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(241, 183, 133);
+    margin-left: 180px;
+    transition: background-color 0.2s ease;
+
+}
+.toggle:hover {
+    background-color: rgb(202, 149, 102);
+}
+
+
+@font-face {
+    font-family: 'Wotfard-Regular';
+    src: url('/public/fonts/Wotfard-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .title{  
+    padding-top: 20px;
+    padding-left: 25px;
+    font-family: 'Wotfard-Regular', sans-serif; 
+    color: brown;
+    font-size: 24px;
+}
+.title p{
+    padding :1px;
+    margin-bottom: 14px;
+}
+.titlehigh{
+    font-family: 'Wotfard-Regular', sans-serif; 
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+}
+.place{
+    font-size: 32px;
+    color:rgb(31, 30, 29)
+}   
+
+.review-card-info {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 0.9rem;
+    color: rgb(153, 85, 21);
+    margin-top: 5px;
+}
+
+.add-review-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgb(202, 149, 102);
+    color: black;
+    border: none;
+    margin-left: 20px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.add-review-button:hover {
+    background-color: rgb(201, 142, 95);
+}
+
+
+/* Modal Overlay */
+.modal-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Close Button */
+.modal-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Review Input */
+.review-input {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Submit Button */
+.submit-review {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-review:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+.review-right::-webkit-scrollbar {
+    width: 8px;
+}
+
+.review-right::-webkit-scrollbar-track {
+    background: rgb(241, 183, 133);
+    border-radius: 4px;
+}
+
+.review-right::-webkit-scrollbar-thumb {
+    background-color: rgb(153, 85, 21);
+    border-radius: 4px;
+}

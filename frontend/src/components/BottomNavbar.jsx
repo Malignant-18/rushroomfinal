@@ -1,5 +1,5 @@
 import React, { useState  , useEffect } from 'react';
-import { Home, Map, User, Settings } from 'lucide-react';
+import { Home, Map, User, Settings  ,School} from 'lucide-react';
 import './BottomNavbar.css';
 function BottomNavbar() {
   const [activeTab, setActiveTab] = useState('home');
@@ -20,7 +20,7 @@ function BottomNavbar() {
     <nav className="bottom-navbar">
       <div className="bottom-navbar-container">
         <button 
-          onClick={() => handleNavigation('home')}
+          onClick={() => handleNavigation('')}
           className={`nav-button ${activeTab === '/' ? 'active' : ''}`}
         >
           <Home size={24} />
@@ -34,11 +34,11 @@ function BottomNavbar() {
           <span>Map</span>
         </button>
         <button 
-          onClick={() => handleNavigation('profile')}
-          className={`nav-button ${activeTab === '/profile' ? 'active' : ''}`}
+          onClick={() => handleNavigation('toilets/1')}
+          className={`nav-button ${activeTab === '/toilets/1' ? 'active' : ''}`}
         >
-          <User size={24} />
-          <span>Profile</span>
+          <School size={24} />
+          <span>Rushroom</span>
         </button>
         <button 
           onClick={() => handleNavigation('settings')}

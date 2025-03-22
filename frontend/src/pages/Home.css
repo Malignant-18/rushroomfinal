@@ -1,103 +1,73 @@
-.home-container {
-    min-height: 100vh; /* Changed from height to min-height to allow scrolling */
-    width: 100%;
-    padding-top: 64px;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: hidden; /* Prevents horizontal scrolling but allows vertical scrolling */
-}
-
-/* Hero Section - Fullscreen */
-.home-section {
-    height: 100vh;
-    width: 100%;
-    overflow-y: hidden;
-    display: flex;
-    flex-direction: column;
-}
 
 .title-section {
     flex: 1;
     display: flex;
-    overflow-y: hidden;
     flex-direction: column;
     justify-content: center;
     background-color: #471100;
-
 }
 
 .hero-content {
-    text-align: left;
+    text-align: center; /* Centering text */
     height: 100vh;
     padding-left: 10%;
 }
+
 @font-face {
     font-family: "ToxTypewriter";
-    src: url("../../public/fonts/KirstyRg.otf") format("opentype");
+    src: url("/home/george-joseph/vscode/leaflet/frontend/public/fonts/KirstyRg.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
 
-/* Apply the font to the overview section */
+/* Overview Section */
 .overview-content {
     font-family: "ToxTypewriter", sans-serif;
     max-width: 800px;
-    color: #471100; /* Dark brown */    
+    color: #471100;
     text-align: left;
     line-height: 1.8;
     padding-top: 80px;
-    
 }
 
 .overview-title {
     font-size: 2.5rem;
     font-weight: 500;
     padding-bottom: 28px;
-    color: #471100; /* Dark brown */
+    color: #471100;
     text-transform: uppercase;
     margin-bottom: 15px;
 }
 
-
 .overview-text {
     font-size: 1.4rem;
-    color: #471100; /* Dark brown */
+    color: #471100;
     line-height: 2.1;
-    font-weight: 900px;
+    font-weight: 900;
     text-align: center;
     max-width: 800px;
 }
 
-/* Overview Section - Animated Appearance */
+/* AOS Animations */
 .overview-section {
-    min-height: 100vh; /* Ensures this section is fully scrollable */
+    min-height: 100vh;
     background-color: rgb(252, 207, 178);
     display: flex;
-    align-items:flex-start;
+    align-items: flex-start;
     justify-content: center;
     padding: 20px;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.overview-section.in-view {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+/* Highlighted Text */
 .highlight {
-    color: rgb(131, 73, 34); /* Light cream */
+    color: rgb(131, 73, 34);
     font-weight: 700;
 }
 
-
-
 .bold {
     font-weight: 600;
-    color: #88280a; /* Soft orange */
+    color: #88280a;
 }
-
 
 /* Title Styling */
 .main-title {
@@ -108,14 +78,14 @@
 }
 
 .rush {
-    color: rgb(224, 162, 120); /* Preserving the original color */
+    color: rgb(224, 162, 120);
     font-weight: 900;
     font-size: clamp(4rem, 20vw, 12rem);
     text-align: left;
 }
 
 .room {
-    color: rgb(252, 207, 178); /* Preserving the original color */
+    color: rgb(252, 207, 178);
     font-weight: 200;
     font-size: clamp(4rem, 20vw, 12rem);
     text-align: center;
@@ -135,7 +105,7 @@
 
 /* Subtitle */
 .subtitle {
-    color: rgb(224, 162, 120); /* Preserving the original color */
+    color: rgb(224, 162, 120);
     font-size: clamp(1rem, 3vw, 2rem);
     margin-top: 1rem;
 }
@@ -150,3 +120,98 @@
         padding-left: 5%;
     }
 }
+
+
+
+
+
+
+
+
+
+
+/* Features Section */
+.features-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(252, 207, 178);
+    padding: 40px 0;
+    width: 100%;
+    
+    
+}
+
+/* Carousel Styling */
+.slick-slider {
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.slick-dots li button:before {
+    font-size: 14px;
+    color: rgb(131, 73, 34);
+}
+
+.slick-dots li.slick-active button:before {
+    color: #471100;
+}
+  
+  .feature-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 800px; /* Keeps slides uniform */
+    margin: 0 auto;
+  }
+  .feature-image {
+    width: 100%;
+    max-width: 1120px; /* Keep it at 1120px width */
+    height: auto; /* Maintain aspect ratio */
+    aspect-ratio: 1120 / 540; /* Ensures uniform height */
+    object-fit: cover; /* Crops overflow while maintaining uniformity */
+    border-radius: 12px;
+    
+    border: 3px solid #8a3a04;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #270900;
+  outline: 3px solid #522511; /* Outer border - blue */
+  outline-offset: -4px; /* Pulls the outline inward */
+  }
+.feature-text {
+    margin-top: 20px;
+    color: #471100;
+}
+
+.feature-title {
+    font-size: 2rem;
+    color: #471100;
+    font-weight: 700;
+    margin-bottom: 1px;
+}
+
+.feature-description {
+    font-size: 1.2rem;
+    color: rgb(131, 73, 34);
+    margin-top: 10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .slick-slider {
+        width: 90%;
+    }
+
+    .feature-title {
+        font-size: 1.8rem;
+    }
+
+    .feature-description {
+        font-size: 1rem;
+    }
+}
+

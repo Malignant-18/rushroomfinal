@@ -1,45 +1,94 @@
-import "./ToiletDetails.css"
-
+import "./ToiletDetails.css";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "../backend/supabaseClient";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { 
+  ChevronLeft, 
+  ChevronRight,
+  Star,
+  ShowerHead,
+  Clock,
+  MapPin,
+  Users,
+  Building,
+  IndianRupee,
+  Phone,
+  Calendar,
+  Accessibility,
+  Baby,
+  PackageOpen
+} from "lucide-react";
 
 const ToiletDetails = () => {
   const [toilet, setToilet] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [direction, setDirection] = useState(0);
   const { id } = useParams();
   const navigate = useNavigate();
   const numToilets = 10;
 
-  const fetchToilet = async (toiletId) => {
-    const { data, error } = await supabase
-      .from("toilets")
-      .select("*")
-      .eq("id", toiletId)
-      .single();
 
-    if (!error) setToilet(data);
-    return !error;
-  };
 
   useEffect(() => {
-    fetchToilet(id);
+    const fetchToilet = async (toiletId) => {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from("toilets")
+          .select("*")
+          .eq("id", toiletId)
+          .single();
+  
+        if (error) {
+          console.error("Error fetching toilet:", error);
+          return false;
+        }
+        setToilet(data);
+        return true;
+      } catch (err) {
+        console.error("Error in fetchToilet:", err);
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (id) {
+      fetchToilet(id);
+    }
   }, [id]);
 
-  const handleCarousel = (dir) => {
+  const FacilitiesSection = ({ facilities }) => {
+    const facilitiesList = [
+      { key: "wheelchair", name: "Wheelchair Accessible", icon: <Accessibility size={20} /> },
+      { key: "baby_change", name: "Baby Changing", icon: <Baby size={20} /> },
+      { key: "sanitarypad", name: "Sanitary Pad", icon: <PackageOpen size={20} /> },
+    ];
+  
+    return (
+      <div className="facilities-section">
+        
+        <div className="facilities-grid">
+          {facilitiesList.map((facility, index) => (
+            <div
+              key={index}
+              className={`facility-item ${facilities[facility.key] ? "available" : "unavailable"}`}
+            >
+              <span className="facility-icon">{facility.icon}</span>
+              <span className="facility-name">{facility.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const handleCarousel = async (dir) => {
     setDirection(dir);
     const currentId = parseInt(id);
-    let nextId;
+    let nextId = dir > 0 ? (currentId === numToilets ? 1 : currentId + 1) : (currentId === 1 ? numToilets : currentId - 1);
     
-    if (dir > 0) {
-      nextId = currentId === numToilets ? 1 : currentId + 1;
-    } else {
-      nextId = currentId === 1 ? numToilets : currentId - 1;
-    }
-    
-    navigate(`/toilet/${nextId}`);
+    navigate(`/toilets/${nextId}`);
   };
 
   const variants = {
@@ -59,28 +108,19 @@ const ToiletDetails = () => {
     })
   };
 
-  const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset, velocity) => {
-    return Math.abs(offset) * velocity;
-  };
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
 
-  if (!toilet) return <div className="toilet-details">Loading...</div>;
-
-  const detailItems = [
-    { label: "Location", value: toilet.place },
-    { label: "Category", value: toilet.category },
-    { label: "Price", value: toilet.free ? "Free" : `Rs. ${toilet.price}` },
-    { label: "Timings", value: `${toilet.opening_hours} - ${toilet.closing_hours}` },
-    { label: "Shower", value: toilet.shower ? "Available" : "Not Available" },
-    { label: "Contact", value: toilet.contact_caretaker ?? "Not available" },
-    { label: "Last Maintenance", value: toilet.last_maintenance ?? "Unknown" }
-  ];
+  if (!toilet) {
+    return <div className="toilet-details">No toilet data found</div>;
+  }
 
   return (
     <div className="carousel-container">
-      <AnimatePresence initial={false} custom={direction}>
+      <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
-          className="toilet-details"
+          className="toilet-card"
           key={toilet.id}
           custom={direction}
           variants={variants}
@@ -91,57 +131,105 @@ const ToiletDetails = () => {
             x: { type: "spring", stiffness: 300, damping: 30 },
             opacity: { duration: 0.2 }
           }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
-
-            if (swipe < -swipeConfidenceThreshold) {
-              handleCarousel(1);
-            } else if (swipe > swipeConfidenceThreshold) {
-              handleCarousel(-1);
-            }
-          }}
         >
-          <p>{toilet.name}</p>
+          <div className="card-grid">
+
           
-          <div className="availability-tag">
-            {toilet.gender_availability}
-          </div>
-          
-          {toilet.average_rating && (
-            <div className="rating">
-              {toilet.average_rating}
+            {/* Left Section */}
+            <div className="image-section">
+              <img src="/assets/toiletimage.jpeg" alt={toilet.name} className="main-image" />
+              <div className="image-overlay">
+                <h2 className="toilet-name">{toilet.name}</h2>
+
+                <div className="location">
+                  <MapPin className="icon" />
+                  <span>{toilet.place}</span>
+                </div>
+
+                {toilet.average_rating && (
+                  <div className="rating">
+                    <Star className="icon filled" />
+                    <span>{toilet.average_rating}</span>
+                  </div>
+                )}
+                
+              </div>
             </div>
-          )}
 
-          {toilet.image && (
-            <motion.img 
-              className="toilet-image" 
-              src={toilet.image} 
-              alt={toilet.name}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            />
-          )}
 
-          {detailItems.map((item, index) => (
-            <motion.div 
-              className="detail-item" 
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <span className="detail-label">{item.label}:</span>
-              <span className="detail-value">{item.value}</span>
-            </motion.div>
-          ))}
+
+
+        <div className="right-section">
+		
+		
+			<div className={`shower-status ${toilet.shower ? 'available' : 'unavailable'}`}>
+				<ShowerHead className="status-icon" />
+					<span>Shower {toilet.shower ? 'Available' : 'Not Available'}</span>
+			</div>
+
+			{/* Details Grid */}
+			<div className="details-grid">
+				{/* Hours */}
+				<div className="detail-item">
+					<Clock className="detail-icon" />
+					<div className="detail-content">
+						<span className="label">Operating Hours</span>
+						<span className="value">{toilet.opening_hours} - {toilet.closing_hours}</span>
+					</div>
+				</div>
+
+				{/* Price */}
+				<div className="detail-item">
+					<IndianRupee className="detail-icon" />
+					<div className="detail-content">
+						<span className="label">Price</span>
+						<span className={`value ${toilet.free ? 'free' : ''}`}>
+						{toilet.free ? 'Free' : `Rs. ${toilet.price}`}</span>
+					</div>
+				</div>
+
+				<div className="detail-item">
+				<Phone className="detail-icon" />
+				<div className="detail-content">
+					<span className="label">Caretaker Contact</span>
+					<span className="value">{toilet.caretaker_no}</span>
+				</div>
+				</div>
+
+				<div className="detail-item">
+					<Calendar className="detail-icon" />
+					<div className="detail-content">
+						<span className="label">Last Maintained</span>
+						<span className="value">
+						maintansedd</span>
+					</div>
+				</div>
+
+				{/* Categories */}
+				<div className="detail-item categories">
+					<div className="badges">
+					<div className="badge">
+						<Users className="badge-icon" />
+						<span>{toilet.gender_availability.replace('_', ' ')}</span>
+					</div>
+					<div className="badge">
+						<Building className="badge-icon" />
+						<span>{toilet.category}</span>
+					</div>
+					</div>
+				</div>
+			</div>
+
+			<FacilitiesSection  facilities={toilet.facilities} />
+		</div>
+    </div>
         </motion.div>
       </AnimatePresence>
-
-      <button 
+    <button className="back-button" onClick={() => navigate("/map")}>Go Back</button>
+    <button className="reviews-button" onClick={() => 
+      navigate(`/reviews/${id}`,{state:{ name: toilet.name, place: toilet.place }})}>
+    Reviews</button>
+    <button 
         className="carousel-button prev"
         onClick={() => handleCarousel(-1)}
       >
@@ -155,14 +243,7 @@ const ToiletDetails = () => {
         <ChevronRight size={24} />
       </button>
 
-      <motion.button 
-        className="back-button"
-        onClick={() => navigate(-1)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Go Back
-      </motion.button>
+      
     </div>
   );
 };
